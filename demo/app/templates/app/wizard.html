@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% load material_form %}
+{% block content %}
+<form  action="" method="post">
+{% csrf_token %}
+{{ wizard.management_form }}
+{% if wizard.form.forms %}
+    {{ wizard.form.management_form }}
+        {% for form in wizard.form.forms %}
+            {% form %}{% endform %}
+        {% endfor %}
+{% else %}
+    {% form form=wizard.form %}{% endform %}
+{% endif %}
+<input type="submit" value="Proceed" />
+</form>
+{% endblock %}
